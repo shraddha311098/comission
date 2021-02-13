@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chain Marketing</title>
+    <style>
+        .show{
+            text-align: center;
+            font-size: xx-large;
+        }
+    </style>
+</head>
+<body>
+    <p id="display" class="show"></p>
+    <p id="display1" class="show"></p>
+    <script>
+        const schemeAmount=5000;
+        function chainMarketing(){
+            let parentMember;
+            let childMember;
+            let temp;
+            let count=0;
+            let newChildMember;
+            let newChildMemberComission;
+            let parentMemberComission=0;
+            let arr;
+            parentMember=prompt("Enter parent name","adrfed");
+            if(parentMember==null || parentMember==""){
+                alert("Please enter valid input"); 
+                chainMarketing();
+            }else{
+                count++;
+                temp=prompt("Enter Y if  Parent member has child members otherwise enter N","Y");
+                if(temp==null || parentMember==""){
+                    alert("Please enter valid input"); 
+                    chainMarketing();
+                }else if(temp=="Y"||temp=="y"){
+                        childMember=prompt("Enter names of child members in comma separated","asdfg");
+                        if(childMember==null || parentMember==""){
+                            alert("Please enter valid input"); 
+                            chainMarketing();
+                        }else{
+                            if(childMember.length>0){
+                            newChildMember= childMember.split(",");
+                            console.log(newChildMember);
+                            for(let i=1;i<=newChildMember.length;i++){
+                                if(newChildMember[i]!=""){
+                                count++;
+                                }
+                            }
+                            document.getElementById("display").innerHTML="Total Member:"+count;
+                                for(let k=0;k<newChildMember.length;k++){
+                                    if(newChildMember[k]!="")
+                                    parentMemberComission+=((schemeAmount/100)*10);
+                                }
+                                document.getElementById("display1").innerHTML=parentMember+":"+ parentMemberComission; 
+                                for(let j=0;j<newChildMember.length;j++){
+                                    if(newChildMember[j]!=""){
+                                        newChildMemberComission=(schemeAmount/100)*5;
+                                    let para=document.createElement("p");
+                                    para.innerHTML=newChildMember[j]+":"+newChildMemberComission;
+                                    document.body.appendChild(para);
+                                    para.style.textAlign="center";
+                                    para.style.fontSize="xx-large";
+                                    }  
+                                }
+                            }else{
+                                alert("Please enter valid input");
+                                chainMarketing();
+                            }
+                        }
+                }else if(temp=="N"||temp=="n"){
+                            parentMemberComission=(schemeAmount/100)*5;
+                            document.getElementById("display1").innerHTML=parentMember+":"+ parentMemberComission;
+                }else{
+                    alert("Please enter valid input");
+                    chainMarketing();
+                }
+            }
+        }
+    chainMarketing();
+    </script>
+</body>
+</html>
